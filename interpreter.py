@@ -13,6 +13,8 @@ class Interpreter:
             return "variable", row
         elif row[0] == 2:
             return "printing", row
+        elif row[0] == 3:
+            return "combine", row
 
     def tokenize(self):
         rsl = self.get_keyword(row=row)
@@ -40,6 +42,12 @@ class Interpreter:
             else:
                 self.output.append(sum(rsl_shortend[2:]))
                 return {"keyword": "print", "value": sum(rsl_shortend[2:])}
+        elif rsl[0] == "combine":
+            if sum(rsl[1][all_seperators_pos[0]+1:all_seperators_pos[1]]) in self.vars.keys() and sum(rsl[1][all_seperators_pos[1]+1:all_seperators_pos[2]]) in self.vars.keys():
+                var1 = self.vars.get(sum(rsl[1][all_seperators_pos[1]+1:all_seperators_pos[2]]))
+                var2 = sum(rsl[1][all_seperators_pos[1]+1:all_seperators_pos[2]])
+                self.vars[sum(rsl[1][all_seperators_pos[2]+1:])] = var1 + var2
+                return {"keyword": "combined", "var_3_name": sum(rsl[1][all_seperators_pos[2]+1:]), "var3_value": var1 + var2}
 
     def run(self):
         for out in self.output:

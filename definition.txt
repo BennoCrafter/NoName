@@ -1,6 +1,6 @@
-16: Set a variable to a value
-26: Print a text to the console
-266: Print a variable to the console
+16Name6Value: Set a variable to a value
+26Value: Print a text to the console
+266VarName: Print a variable to the console
 3: Add two variables together and store the result in a third variable
 4: Subtract one variable from another and store the result in a third variable
 5: Multiply two variables together and store the result in a third variable
